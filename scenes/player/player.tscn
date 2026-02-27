@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bpj3r4vt0dmhh"]
+
+[ext_resource type="Script" uid="uid://d0koihdl4dl5p" path="res://scenes/player/player.gd" id="1_dovo2"]
+[ext_resource type="Texture2D" uid="uid://e6s234g6gt6s" path="res://assets/sprites/bird-spritesheet.png" id="2_dovo2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dgrex"]
+radius = 50.0
+
+[node name="Player" type="CharacterBody2D" unique_id=1261520394]
+scale = Vector2(0.39999986, 0.39999986)
+script = ExtResource("1_dovo2")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=754508858]
+texture = ExtResource("2_dovo2")
+hframes = 2
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2075081691]
+position = Vector2(0, -17.500006)
+shape = SubResource("CircleShape2D_dgrex")

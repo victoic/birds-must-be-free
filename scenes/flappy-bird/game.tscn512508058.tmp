@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://8113iln4goci"]
+
+[ext_resource type="Script" uid="uid://bakj8erg7cvef" path="res://scenes/flappy-bird/game.gd" id="1_xx08e"]
+[ext_resource type="Texture2D" uid="uid://mosmxyijku26" path="res://icon.svg" id="2_b304k"]
+[ext_resource type="Script" uid="uid://d0koihdl4dl5p" path="res://scenes/player/player.gd" id="3_4ea45"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dgrex"]
+radius = 60.0
+
+[node name="Game" type="Node2D" unique_id=913861713]
+script = ExtResource("1_xx08e")
+
+[node name="Obstacles" type="Node2D" parent="." unique_id=1031277243]
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=1329699846]
+script = ExtResource("3_4ea45")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=1667062183]
+texture = ExtResource("2_b304k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=1055549836]
+shape = SubResource("CircleShape2D_dgrex")

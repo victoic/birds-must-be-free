@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://8113iln4goci"]
+
+[ext_resource type="Script" uid="uid://bakj8erg7cvef" path="res://scenes/flappy-bird/game.gd" id="1_xx08e"]
+[ext_resource type="PackedScene" uid="uid://bpj3r4vt0dmhh" path="res://scenes/player/player.tscn" id="2_xx08e"]
+
+[node name="Game" type="Node2D" unique_id=913861713]
+script = ExtResource("1_xx08e")
+
+[node name="Obstacles" type="Node2D" parent="." unique_id=1031277243]
+
+[node name="Player" parent="." unique_id=1261520394 instance=ExtResource("2_xx08e")]
+position = Vector2(50, 324)
+
+[connection signal="hit_something" from="Player" to="." method="_on_player_hit_something"]

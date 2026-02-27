@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://8113iln4goci"]
+
+[ext_resource type="Script" uid="uid://bakj8erg7cvef" path="res://scenes/flappy-bird/game.gd" id="1_xx08e"]
+
+[node name="Game" type="Node2D" unique_id=913861713]
+script = ExtResource("1_xx08e")
+bar_start_x = null
+gap_between_bars = null
+
+[node name="Obstacles" type="Node2D" parent="." unique_id=1031277243]

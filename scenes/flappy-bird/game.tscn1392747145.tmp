@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://8113iln4goci"]
+
+[ext_resource type="Script" uid="uid://cg0duacps6lu" path="res://scenes/obstacle/obstacle.gd" id="1_eeidl"]
+
+[node name="Game" type="Node2D" unique_id=913861713]
+
+[node name="Obstacle" type="Node2D" parent="." unique_id=670623472]
+script = ExtResource("1_eeidl")
+
+[node name="UpperBarPolygon2D" type="Polygon2D" parent="Obstacle" unique_id=2097017169]
+
+[node name="LowerBarPolygon2D" type="Polygon2D" parent="Obstacle" unique_id=1253812093]

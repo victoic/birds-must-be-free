@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://cuptb0u4rgoph"]
+
+[ext_resource type="Script" uid="uid://cg0duacps6lu" path="res://scenes/obstacle/obstacle.gd" id="1_1ys07"]
+[ext_resource type="Script" uid="uid://ctj2ket4ct6q" path="res://scenes/obstacle/bar.gd" id="2_osovj"]
+
+[node name="Obstacle" type="StaticBody2D" unique_id=509378645 groups=["bars"]]
+script = ExtResource("1_1ys07")
+
+[node name="UpperBarStaticBody2D" type="StaticBody2D" parent="." unique_id=1749288316]
+collision_mask = 0
+script = ExtResource("2_osovj")
+
+[node name="Polygon2D" type="Polygon2D" parent="UpperBarStaticBody2D" unique_id=1711165092]
+color = Color(1, 1, 0.34509805, 1)
+polygon = PackedVector2Array(0, 0, 50, 0, 50, 648, 0, 648)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UpperBarStaticBody2D" unique_id=1251141128]
+debug_color = Color(0.6124633, 0.17737457, 0.663067, 0.41960785)
+
+[node name="LowerBarStaticBody2D" type="StaticBody2D" parent="." unique_id=759865834]
+collision_mask = 0
+script = ExtResource("2_osovj")
+
+[node name="Polygon2D" type="Polygon2D" parent="LowerBarStaticBody2D" unique_id=1317227614]
+color = Color(1, 0.32941177, 1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LowerBarStaticBody2D" unique_id=71611138]
