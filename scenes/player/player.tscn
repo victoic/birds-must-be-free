@@ -13,6 +13,7 @@ script = ExtResource("1_dovo2")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=754508858]
 texture = ExtResource("2_dovo2")
 hframes = 2
+vframes = 3
 frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2075081691]

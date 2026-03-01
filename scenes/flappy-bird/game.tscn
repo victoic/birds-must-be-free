@@ -2,13 +2,160 @@
 
 [ext_resource type="Script" uid="uid://bakj8erg7cvef" path="res://scenes/flappy-bird/game.gd" id="1_xx08e"]
 [ext_resource type="PackedScene" uid="uid://bpj3r4vt0dmhh" path="res://scenes/player/player.tscn" id="2_xx08e"]
+[ext_resource type="Texture2D" uid="uid://bqkigcyhv0wok" path="res://assets/sprites/backgrounds-spritesheet.png" id="3_b304k"]
+[ext_resource type="Texture2D" uid="uid://blp810bddvlu5" path="res://assets/sprites/billboards/common/pt/outdoor01-pt.png" id="3_dgrex"]
+[ext_resource type="Script" uid="uid://cgljwan7cd6wv" path="res://scenes/background/background.gd" id="3_gf4or"]
+[ext_resource type="Texture2D" uid="uid://cse2a5mgvh1ia" path="res://assets/sprites/billboards/common/en/outdoor01-en.png" id="4_0xpkd"]
+[ext_resource type="LabelSettings" uid="uid://c8l0eu8rodtrf" path="res://resources/style/label_settings/gui_text.tres" id="4_4ea45"]
+[ext_resource type="Shader" uid="uid://bew1rgv5robst" path="res://shaders/night_outdoor.gdshader" id="5_gf4or"]
+[ext_resource type="FontFile" uid="uid://bdljsf1ltt4ln" path="res://assets/fonts/dogicapixelbold.otf" id="8_njet0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b304k"]
+size = Vector2(10, 648)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gf4or"]
+size = Vector2(500, 20)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0xpkd"]
+shader = ExtResource("5_gf4or")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ea45"]
+size = Vector2(20, 648)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_njet0"]
+size = Vector2(500, 20)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gf4or"]
+shader = ExtResource("5_gf4or")
+
+[sub_resource type="LabelSettings" id="LabelSettings_0gqd1"]
+font = ExtResource("8_njet0")
+font_color = Color(0, 0, 0, 1)
+outline_size = 5
+shadow_size = 5
+shadow_color = Color(0.23137255, 0.23137255, 0.23137255, 0.62352943)
+shadow_offset = Vector2(5, 5)
 
 [node name="Game" type="Node2D" unique_id=913861713]
 script = ExtResource("1_xx08e")
 
+[node name="Background1" type="Sprite2D" parent="." unique_id=23969402]
+texture = ExtResource("3_b304k")
+centered = false
+script = ExtResource("3_gf4or")
+
+[node name="YearUpArea" type="Area2D" parent="Background1" unique_id=1461099744]
+position = Vector2(0, 324)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background1/YearUpArea" unique_id=72570399]
+shape = SubResource("RectangleShape2D_b304k")
+
+[node name="AwakeningArea" type="Area2D" parent="Background1" unique_id=241288177]
+position = Vector2(500, 10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background1/AwakeningArea" unique_id=1569215367]
+shape = SubResource("RectangleShape2D_gf4or")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Background1/AwakeningArea" unique_id=1420971408]
+position = Vector2(2500, 0)
+shape = SubResource("RectangleShape2D_gf4or")
+
+[node name="DayBillboardSprite2D" type="Sprite2D" parent="Background1" unique_id=1874019104]
+position = Vector2(505, 198)
+texture = ExtResource("3_dgrex")
+
+[node name="NightBillboardSprite2D" type="Sprite2D" parent="Background1" unique_id=1640336976]
+material = SubResource("ShaderMaterial_0xpkd")
+position = Vector2(3008.0002, 208.00003)
+rotation = 0.08726646
+texture = ExtResource("4_0xpkd")
+
+[node name="Background2" type="Sprite2D" parent="." unique_id=1651720885]
+position = Vector2(4000, 0)
+texture = ExtResource("3_b304k")
+centered = false
+script = ExtResource("3_gf4or")
+
+[node name="YearUpArea" type="Area2D" parent="Background2" unique_id=954231100]
+position = Vector2(0, 324)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background2/YearUpArea" unique_id=697024762]
+shape = SubResource("RectangleShape2D_4ea45")
+
+[node name="AwakeningArea" type="Area2D" parent="Background2" unique_id=1773725875]
+position = Vector2(500, 10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background2/AwakeningArea" unique_id=1667916691]
+shape = SubResource("RectangleShape2D_njet0")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Background2/AwakeningArea" unique_id=1946044351]
+position = Vector2(2500, 0)
+shape = SubResource("RectangleShape2D_njet0")
+
+[node name="DayBillboardSprite2D" type="Sprite2D" parent="Background2" unique_id=1890412422]
+position = Vector2(502, 204)
+texture = ExtResource("4_0xpkd")
+
+[node name="NightBillboardSprite2D" type="Sprite2D" parent="Background2" unique_id=1145557652]
+material = SubResource("ShaderMaterial_gf4or")
+position = Vector2(3005, 204)
+rotation = 0.08726646
+texture = ExtResource("4_0xpkd")
+
 [node name="Obstacles" type="Node2D" parent="." unique_id=1031277243]
+modulate = Color(1, 1, 1, 0.33333334)
 
 [node name="Player" parent="." unique_id=1261520394 instance=ExtResource("2_xx08e")]
 position = Vector2(50, 324)
 
+[node name="GUI" type="Control" parent="." unique_id=798436025]
+custom_minimum_size = Vector2(1152, 648)
+layout_mode = 3
+anchors_preset = 0
+
+[node name="NameLabel" type="Label" parent="GUI" unique_id=1297663803]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.028
+anchor_top = 0.039
+anchor_right = 0.07300001
+anchor_bottom = 0.074
+offset_left = -0.25600052
+offset_top = -0.27200127
+offset_right = -0.0960083
+offset_bottom = 0.048000336
+text = "Bill"
+label_settings = SubResource("LabelSettings_0gqd1")
+
+[node name="AgeLabel" type="Label" parent="GUI" unique_id=1355342184]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.054
+anchor_top = 0.085
+anchor_right = 0.16100001
+anchor_bottom = 0.120000005
+offset_left = -0.20800018
+offset_top = -0.08000183
+offset_right = 0.5279846
+offset_bottom = 0.23999786
+text = "Idade: 25"
+label_settings = ExtResource("4_4ea45")
+
+[node name="MoneyLabel" type="Label" parent="GUI" unique_id=378981729]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.054
+anchor_top = 0.15
+anchor_right = 0.13900001
+anchor_bottom = 0.185
+offset_left = -0.20800018
+offset_top = -0.20000458
+offset_right = -0.12802124
+offset_bottom = 0.11999512
+text = "R$ 0.00"
+label_settings = ExtResource("4_4ea45")
+
+[connection signal="body_entered" from="Background1/YearUpArea" to="." method="_on_year_up_area_body_entered"]
+[connection signal="body_entered" from="Background1/AwakeningArea" to="." method="_on_awakening_area_body_entered"]
+[connection signal="body_entered" from="Background2/YearUpArea" to="." method="_on_year_up_area_body_entered"]
 [connection signal="hit_something" from="Player" to="." method="_on_player_hit_something"]

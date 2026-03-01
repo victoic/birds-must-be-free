@@ -6,6 +6,8 @@ signal hit_something
 
 @export var gravity: float = 980.0
 @export var jump_force: float = -425.0
+@export var age: int = 25
+@export var money: float = 0.0
 
 var game_paused: bool = false
 

@@ -1,11 +1,22 @@
 class_name Game extends Node2D
 
-@export var bar_start_x: int = 400
+@onready var obstacle_scene: PackedScene = load("res://scenes/obstacle/obstacle.tscn")
+@onready var obstacles: Node2D = $Obstacles
+@onready var player: Player = $Player
+
+@onready var background1: Background = $Background1
+@onready var background2: Background = $Background2
+var bg_width: float
+
+@onready var age_label: Label = $GUI/AgeLabel
+@onready var money_label: Label = $GUI/MoneyLabel
+
+@export var bar_start_x: int = 0
 @export var gap_between_bars: int = 250
 @export var game_paused: bool = true
 @export var game_over: bool = false
 
-@onready var obstacle_scene: PackedScene = load("res://scenes/obstacle/obstacle.tscn")
+@export var speed: Vector2 = Vector2(-125, 0)
 
 '''
 Ideas:
@@ -19,22 +30,52 @@ Ideas:
 		- finally, another thing appears which takes to last level of revolution
 			- maybe multiple "birds", which fall when hit but overtime more come
 			- only loses if every bird falls
+	- multiple endings (revolution, death by work)
+	- since chance of spawn of billboard is very small:
+		- generate random name to player
+		- add to chance for every ending got
 '''
 
 func _ready() -> void:
-	for i in range((get_viewport_rect().size.x / gap_between_bars) + 1):
+	print("Window size: {0}".format([get_viewport_rect().size]))
+	for i in range((get_viewport_rect().size.x / gap_between_bars) + 2):
 		var x: float = bar_start_x + i * gap_between_bars
 		var new_bar: Obstacle = obstacle_scene.instantiate()
-		print("Adding bar to x={0}".format([x]))
 		new_bar.position.x = x
-		add_child(new_bar)
+		obstacles.add_child(new_bar)
+		new_bar.obstacle_name = 'Obstacle {0}'.format([i])
+		print("Added {0} bar to x={1}".format([new_bar.obstacle_name, x]))
+	bg_width = background1.texture.get_size().x
+	background1.setup(0)
+	background2.setup(bg_width)
 	game_paused = false
 
 func _process(delta: float) -> void:
 	if not game_paused:
 		for obstacle: Obstacle in get_tree().get_nodes_in_group("bars"):
-			print(is_instance_of(obstacle, Obstacle))
-			obstacle.move_and_collide(obstacle.speed * delta)
+			obstacle.move_and_collide(speed * delta)
+		
+		background1.position += speed * delta
+		background2.position += speed * delta
+		if background1.position.x <= -(bg_width):
+			background1.setup(background2.position.x + bg_width)
+		if background2.position.x <= -(bg_width):
+			background2.setup(background1.position.x + bg_width)
+			
 
 func _on_player_hit_something() -> void:
 	game_paused = true
+
+func _on_year_up_area_body_entered(body: Node2D) -> void:
+	if is_instance_of(body, Player):
+		player.age += 1
+		player.money += 1621.0
+		if player.age % 10 == 0:
+			speed *= 1.25
+		
+		age_label.text = "Idade: {0}".format([player.age])
+		money_label.text = "R$ %.2f" % player.money
+
+func _on_awakening_area_body_entered(body: Node2D) -> void:
+	if is_instance_of(body, Player):
+		print("Detected entering REVOLUTION!")

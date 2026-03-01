@@ -3,10 +3,11 @@ class_name Obstacle extends StaticBody2D
 @onready var upper_bar: Bar = $UpperBarStaticBody2D
 @onready var lower_bar: Bar = $LowerBarStaticBody2D
 
-@export var speed: Vector2 = Vector2(-100, 0)
+@export var obstacle_name: String = ''
 @export var width: int = 50
 @export var gap_height: int = 200
 @export var border_padding: int = 50
+@export var reset_position_x: float = 1500
 
 func _ready() -> void:
 	setup()
@@ -37,5 +38,6 @@ func setup():
 
 func _process(delta: float) -> void:
 	if position.x <= -width:
-		position.x = get_viewport_rect().size.x + width
+		position.x += reset_position_x
+		print("{0} changed position to {1}".format([obstacle_name, position]))
 		setup()
