@@ -2,6 +2,11 @@
 
 [ext_resource type="Script" uid="uid://cg0duacps6lu" path="res://scenes/obstacle/obstacle.gd" id="1_1ys07"]
 [ext_resource type="Script" uid="uid://ctj2ket4ct6q" path="res://scenes/obstacle/bar.gd" id="2_osovj"]
+[ext_resource type="Texture2D" uid="uid://cmms5xh6ihvup" path="res://assets/images/bar_textures/bar_texture_01.png" id="3_osovj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_osovj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ckc2h"]
 
 [node name="Obstacle" type="StaticBody2D" unique_id=509378645 groups=["bars"]]
 script = ExtResource("1_1ys07")
@@ -11,7 +16,10 @@ collision_mask = 0
 script = ExtResource("2_osovj")
 
 [node name="Polygon2D" type="Polygon2D" parent="UpperBarStaticBody2D" unique_id=1711165092]
-color = Color(1, 1, 0.34509805, 1)
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_osovj")
+texture = ExtResource("3_osovj")
 polygon = PackedVector2Array(0, 0, 50, 0, 50, 648, 0, 648)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UpperBarStaticBody2D" unique_id=1251141128]
@@ -22,6 +30,7 @@ collision_mask = 0
 script = ExtResource("2_osovj")
 
 [node name="Polygon2D" type="Polygon2D" parent="LowerBarStaticBody2D" unique_id=1317227614]
-color = Color(1, 0.32941177, 1, 1)
+material = SubResource("ShaderMaterial_ckc2h")
+texture = ExtResource("3_osovj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LowerBarStaticBody2D" unique_id=71611138]

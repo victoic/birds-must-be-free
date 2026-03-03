@@ -3,12 +3,13 @@
 [ext_resource type="Script" uid="uid://bakj8erg7cvef" path="res://scenes/flappy-bird/game.gd" id="1_xx08e"]
 [ext_resource type="PackedScene" uid="uid://bpj3r4vt0dmhh" path="res://scenes/player/player.tscn" id="2_xx08e"]
 [ext_resource type="Texture2D" uid="uid://bqkigcyhv0wok" path="res://assets/sprites/backgrounds-spritesheet.png" id="3_b304k"]
-[ext_resource type="Texture2D" uid="uid://blp810bddvlu5" path="res://assets/sprites/billboards/common/pt/outdoor01-pt.png" id="3_dgrex"]
 [ext_resource type="Script" uid="uid://cgljwan7cd6wv" path="res://scenes/background/background.gd" id="3_gf4or"]
-[ext_resource type="Texture2D" uid="uid://cse2a5mgvh1ia" path="res://assets/sprites/billboards/common/en/outdoor01-en.png" id="4_0xpkd"]
 [ext_resource type="LabelSettings" uid="uid://c8l0eu8rodtrf" path="res://resources/style/label_settings/gui_text.tres" id="4_4ea45"]
+[ext_resource type="Texture2D" uid="uid://dc8wplodyu5q2" path="res://assets/sprites/billboards/common/en/billboard01-en.png" id="4_gf4or"]
 [ext_resource type="Shader" uid="uid://bew1rgv5robst" path="res://shaders/night_outdoor.gdshader" id="5_gf4or"]
+[ext_resource type="Theme" uid="uid://8g7satdjmjlv" path="res://resources/style/panel_theme.tres" id="7_0gqd1"]
 [ext_resource type="FontFile" uid="uid://bdljsf1ltt4ln" path="res://assets/fonts/dogicapixelbold.otf" id="8_njet0"]
+[ext_resource type="LabelSettings" uid="uid://thcqsjlwypb5" path="res://resources/style/label_settings/sub_text.tres" id="9_njet0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b304k"]
 size = Vector2(10, 648)
@@ -18,6 +19,18 @@ size = Vector2(500, 20)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0xpkd"]
 shader = ExtResource("5_gf4or")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0gqd1"]
+size = Vector2(20, 648)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0kof2"]
+size = Vector2(20, 648)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_akn2v"]
+size = Vector2(20, 648)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tjdn3"]
+size = Vector2(250, 648)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ea45"]
 size = Vector2(20, 648)
@@ -62,13 +75,38 @@ shape = SubResource("RectangleShape2D_gf4or")
 
 [node name="DayBillboardSprite2D" type="Sprite2D" parent="Background1" unique_id=1874019104]
 position = Vector2(505, 198)
-texture = ExtResource("3_dgrex")
+texture = ExtResource("4_gf4or")
 
 [node name="NightBillboardSprite2D" type="Sprite2D" parent="Background1" unique_id=1640336976]
 material = SubResource("ShaderMaterial_0xpkd")
 position = Vector2(3008.0002, 208.00003)
 rotation = 0.08726646
-texture = ExtResource("4_0xpkd")
+texture = ExtResource("4_gf4or")
+
+[node name="Expenses" type="Area2D" parent="Background1" unique_id=1364866818]
+position = Vector2(0, 324)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background1/Expenses" unique_id=1561340711]
+position = Vector2(750, 0)
+shape = SubResource("RectangleShape2D_0gqd1")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Background1/Expenses" unique_id=911087693]
+position = Vector2(1750, 0)
+shape = SubResource("RectangleShape2D_0kof2")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Background1/Expenses" unique_id=759514631]
+position = Vector2(3500, 0)
+shape = SubResource("RectangleShape2D_akn2v")
+
+[node name="BillboardArea2D" type="Area2D" parent="Background1" unique_id=1603912208]
+position = Vector2(375, 324)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background1/BillboardArea2D" unique_id=392653882]
+shape = SubResource("RectangleShape2D_tjdn3")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Background1/BillboardArea2D" unique_id=461553195]
+position = Vector2(2500, 0)
+shape = SubResource("RectangleShape2D_tjdn3")
 
 [node name="Background2" type="Sprite2D" parent="." unique_id=1651720885]
 position = Vector2(4000, 0)
@@ -94,24 +132,50 @@ shape = SubResource("RectangleShape2D_njet0")
 
 [node name="DayBillboardSprite2D" type="Sprite2D" parent="Background2" unique_id=1890412422]
 position = Vector2(502, 204)
-texture = ExtResource("4_0xpkd")
+texture = ExtResource("4_gf4or")
 
 [node name="NightBillboardSprite2D" type="Sprite2D" parent="Background2" unique_id=1145557652]
 material = SubResource("ShaderMaterial_gf4or")
 position = Vector2(3005, 204)
 rotation = 0.08726646
-texture = ExtResource("4_0xpkd")
+texture = ExtResource("4_gf4or")
 
-[node name="Obstacles" type="Node2D" parent="." unique_id=1031277243]
-modulate = Color(1, 1, 1, 0.33333334)
+[node name="Expenses" type="Area2D" parent="Background2" unique_id=1280520852]
+position = Vector2(0, 324)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background2/Expenses" unique_id=693819044]
+position = Vector2(750, 0)
+shape = SubResource("RectangleShape2D_0gqd1")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Background2/Expenses" unique_id=1738820989]
+position = Vector2(1750, 0)
+shape = SubResource("RectangleShape2D_0kof2")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Background2/Expenses" unique_id=1540882318]
+position = Vector2(3500, 0)
+shape = SubResource("RectangleShape2D_akn2v")
+
+[node name="BillboardArea2D" type="Area2D" parent="Background2" unique_id=99428252]
+position = Vector2(375, 324)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background2/BillboardArea2D" unique_id=1102679088]
+shape = SubResource("RectangleShape2D_tjdn3")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Background2/BillboardArea2D" unique_id=896633367]
+position = Vector2(2500, 0)
+shape = SubResource("RectangleShape2D_tjdn3")
 
 [node name="Player" parent="." unique_id=1261520394 instance=ExtResource("2_xx08e")]
 position = Vector2(50, 324)
+
+[node name="Obstacles" type="Node2D" parent="." unique_id=1031277243]
+modulate = Color(1, 1, 1, 0.81960785)
 
 [node name="GUI" type="Control" parent="." unique_id=798436025]
 custom_minimum_size = Vector2(1152, 648)
 layout_mode = 3
 anchors_preset = 0
+theme = ExtResource("7_0gqd1")
 
 [node name="NameLabel" type="Label" parent="GUI" unique_id=1297663803]
 layout_mode = 1
@@ -135,9 +199,9 @@ anchor_top = 0.085
 anchor_right = 0.16100001
 anchor_bottom = 0.120000005
 offset_left = -0.20800018
-offset_top = -0.08000183
+offset_top = -5.080002
 offset_right = 0.5279846
-offset_bottom = 0.23999786
+offset_bottom = -4.760002
 text = "Idade: 25"
 label_settings = ExtResource("4_4ea45")
 
@@ -149,13 +213,121 @@ anchor_top = 0.15
 anchor_right = 0.13900001
 anchor_bottom = 0.185
 offset_left = -0.20800018
-offset_top = -0.20000458
+offset_top = -22.200005
 offset_right = -0.12802124
-offset_bottom = 0.11999512
-text = "R$ 0.00"
+offset_bottom = -21.880005
+text = "Dinheiro: R$ 0.00"
 label_settings = ExtResource("4_4ea45")
+
+[node name="LoanLabel" type="Label" parent="GUI" unique_id=783723734]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.054
+anchor_top = 0.15
+anchor_right = 0.13900001
+anchor_bottom = 0.185
+offset_left = -0.20800018
+offset_top = 2.7999954
+offset_right = -0.12802124
+offset_bottom = 3.119995
+text = "Empréstimo: R$ 0.00"
+label_settings = ExtResource("4_4ea45")
+
+[node name="GameOverPanel" type="Panel" parent="GUI" unique_id=1023290373]
+visible = false
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.37
+anchor_top = 0.26900002
+anchor_right = 0.63000005
+anchor_bottom = 0.731
+offset_left = -0.23999023
+offset_top = -0.31201172
+offset_right = 0.2399292
+offset_bottom = 0.3119812
+pivot_offset = Vector2(150, 150)
+metadata/_edit_use_anchors_ = true
+
+[node name="TitleLabel" type="Label" parent="GUI/GameOverPanel" unique_id=482511703]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.030000001
+anchor_right = 1.0
+anchor_bottom = 0.10700001
+offset_top = 25.0
+offset_bottom = 24.899998
+grow_horizontal = 2
+text = "Game Over"
+label_settings = ExtResource("4_4ea45")
+horizontal_alignment = 1
+
+[node name="QuoteLabel" type="Label" parent="GUI/GameOverPanel" unique_id=911908299]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 55.0
+offset_right = 289.0
+offset_bottom = 64.0
+text = "what mesmerizing cage it was"
+label_settings = ExtResource("9_njet0")
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/GameOverPanel" unique_id=475612564]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 100.0
+offset_right = 289.0
+offset_bottom = 160.0
+
+[node name="AgeLabel" type="Label" parent="GUI/GameOverPanel/VBoxContainer" unique_id=92699695]
+custom_minimum_size = Vector2(278, 0)
+layout_mode = 2
+text = "You lived to X years old."
+label_settings = ExtResource("9_njet0")
+autowrap_mode = 1
+
+[node name="MoneyLabel" type="Label" parent="GUI/GameOverPanel/VBoxContainer" unique_id=1726684489]
+custom_minimum_size = Vector2(278, 0)
+layout_mode = 2
+text = "You accumulated... it doesn't ma
+tter now, does it?"
+label_settings = ExtResource("9_njet0")
+autowrap_mode = 1
+
+[node name="CauseLabel" type="Label" parent="GUI/GameOverPanel/VBoxContainer" unique_id=429966267]
+custom_minimum_size = Vector2(278, 0)
+layout_mode = 2
+text = "You died of overworking"
+label_settings = ExtResource("9_njet0")
+autowrap_mode = 1
+
+[node name="Button" type="Button" parent="GUI/GameOverPanel" unique_id=611517609]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.10300001
+anchor_top = 0.59000003
+anchor_right = 1.0
+anchor_bottom = 0.753
+offset_left = 0.099998474
+offset_top = 24.999985
+offset_right = -31.0
+offset_bottom = 25.09999
+grow_horizontal = 2
+grow_vertical = 0
+text = "Could there be more?"
 
 [connection signal="body_entered" from="Background1/YearUpArea" to="." method="_on_year_up_area_body_entered"]
 [connection signal="body_entered" from="Background1/AwakeningArea" to="." method="_on_awakening_area_body_entered"]
+[connection signal="body_entered" from="Background1/Expenses" to="." method="_on_expenses_body_entered"]
+[connection signal="body_entered" from="Background1/BillboardArea2D" to="." method="_on_billboard_area_2d_body_entered"]
+[connection signal="body_exited" from="Background1/BillboardArea2D" to="." method="_on_billboard_area_2d_body_exited"]
+[connection signal="body_exited" from="Background1/BillboardArea2D" to="Background1" method="_on_billboard_area_2d_body_exited"]
 [connection signal="body_entered" from="Background2/YearUpArea" to="." method="_on_year_up_area_body_entered"]
+[connection signal="body_entered" from="Background2/Expenses" to="." method="_on_expenses_body_entered"]
+[connection signal="body_entered" from="Background2/BillboardArea2D" to="." method="_on_billboard_area_2d_body_entered"]
+[connection signal="body_exited" from="Background2/BillboardArea2D" to="." method="_on_billboard_area_2d_body_exited"]
+[connection signal="body_exited" from="Background2/BillboardArea2D" to="Background2" method="_on_billboard_area_2d_body_exited"]
 [connection signal="hit_something" from="Player" to="." method="_on_player_hit_something"]
+[connection signal="loan_changed" from="Player" to="." method="_on_player_loan_changed"]
+[connection signal="pressed" from="GUI/GameOverPanel/Button" to="." method="_on_button_pressed"]

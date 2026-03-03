@@ -10,11 +10,12 @@ var bg_width: float
 
 @onready var age_label: Label = $GUI/AgeLabel
 @onready var money_label: Label = $GUI/MoneyLabel
+@onready var loan_label: Label = $GUI/LoanLabel
+@onready var game_over_panel: Panel = $GUI/GameOverPanel
 
 @export var bar_start_x: int = 0
 @export var gap_between_bars: int = 250
 @export var game_paused: bool = true
-@export var game_over: bool = false
 
 @export var speed: Vector2 = Vector2(-125, 0)
 
@@ -48,6 +49,10 @@ func _ready() -> void:
 	bg_width = background1.texture.get_size().x
 	background1.setup(0)
 	background2.setup(bg_width)
+	
+	player.money_changed.connect(_on_player_money_changed)
+	player.animation_player.animation_finished.connect(_on_player_animation_finished)
+	_on_player_money_changed()
 	game_paused = false
 
 func _process(delta: float) -> void:
@@ -63,19 +68,75 @@ func _process(delta: float) -> void:
 			background2.setup(background1.position.x + bg_width)
 			
 
+func set_gui_text() -> void:
+	age_label.text = GlobalsData.locale[GlobalsData.selected_language]['game_age'].format([player.age])
+	loan_label.text = GlobalsData.locale[GlobalsData.selected_language]['game_loan'].format(["%.2f" % player.loan_to_pay])
+	var abs_value: float = abs(player.money)
+	var value_sign: String = "" if player.money >= 0 else '- '
+	var value_string: String = "$ %.2f" % abs_value
+	money_label.text = GlobalsData.locale[GlobalsData.selected_language]['game_money'].format([value_sign, value_string])
+
 func _on_player_hit_something() -> void:
 	game_paused = true
 
 func _on_year_up_area_body_entered(body: Node2D) -> void:
 	if is_instance_of(body, Player):
-		player.age += 1
-		player.money += 1621.0
+		if player.get_old():
+			game_paused = true
 		if player.age % 10 == 0:
 			speed *= 1.25
 		
-		age_label.text = "Idade: {0}".format([player.age])
-		money_label.text = "R$ %.2f" % player.money
+		set_gui_text()
+		player.change_money(player.salary)
+
+func _on_player_money_changed() -> void:
+	set_gui_text()
 
 func _on_awakening_area_body_entered(body: Node2D) -> void:
 	if is_instance_of(body, Player):
 		print("Detected entering REVOLUTION!")
+
+func _on_expenses_body_entered(body: Node2D) -> void:
+	if is_instance_of(body, Player):
+		var expenses: float = 0
+		var v: int = 0
+		if v == 0: # transportation
+			expenses = -randf_range(190, 520)
+		elif v == 1: # housing
+			expenses = -randf_range(650, 1380)
+		elif v == 2: # reocurring expense (light, water, etc)
+			expenses = -randf_range(370, 670)
+		elif v == 3: # groceries
+			expenses = -randf_range(640, 1210)
+		player.change_money(expenses)
+		print("Detected entering EXPENSES!")
+
+func _on_billboard_area_2d_body_entered(body: Node2D) -> void:
+	if is_instance_of(body, Player):
+		player.sprite_frame_y = 2
+
+func _on_billboard_area_2d_body_exited(body: Node2D) -> void:
+	if is_instance_of(body, Player):
+		player.sprite_frame_y = 0
+
+func _on_player_loan_changed() -> void:
+	if player.loan_to_pay > 0:
+		set_gui_text()
+		loan_label.visible = true
+	else:
+		loan_label.visible = false
+
+func _on_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == player.DEATH_ANIMATION:
+		money_label.visible = false
+		var cause: String = 'game_over_cause_text_overwork' if player.age < player.MAX_AGE else 'game_over_cause_text_old'
+		game_over_panel.get_node("TitleLabel").text = GlobalsData.locale[GlobalsData.selected_language]['game_over_title']
+		game_over_panel.get_node("QuoteLabel").text = GlobalsData.locale[GlobalsData.selected_language]['game_over_quote_normal']
+		game_over_panel.get_node("VBoxContainer/AgeLabel").text = GlobalsData.locale[GlobalsData.selected_language]['game_over_age_text_normal'].format([player.age])
+		game_over_panel.get_node("VBoxContainer/MoneyLabel").text = GlobalsData.locale[GlobalsData.selected_language]['game_over_money_text_normal']
+		game_over_panel.get_node("VBoxContainer/CauseLabel").text = GlobalsData.locale[GlobalsData.selected_language][cause]
+		game_over_panel.get_node("Button").text = GlobalsData.locale[GlobalsData.selected_language]['game_over_button_text_normal']
+		game_over_panel.visible = true
+
+func _on_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/flappy-bird/main_menu.tscn")

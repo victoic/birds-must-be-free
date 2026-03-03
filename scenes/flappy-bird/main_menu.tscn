@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://3j5pe72bi6uh"]
+
+[ext_resource type="Theme" uid="uid://8g7satdjmjlv" path="res://resources/style/panel_theme.tres" id="1_dprmv"]
+[ext_resource type="Script" uid="uid://b7cyut5ky1ynb" path="res://scenes/flappy-bird/main_menu.gd" id="1_u1i5w"]
+[ext_resource type="Texture2D" uid="uid://bjnf152cngsyk" path="res://assets/images/backgrounds/menu-bg.png" id="2_w1b3e"]
+[ext_resource type="FontFile" uid="uid://bdljsf1ltt4ln" path="res://assets/fonts/dogicapixelbold.otf" id="3_dprmv"]
+[ext_resource type="LabelSettings" uid="uid://c8l0eu8rodtrf" path="res://resources/style/label_settings/gui_text.tres" id="5_g1bwr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_g1bwr"]
+font = ExtResource("3_dprmv")
+font_size = 42
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 5
+shadow_color = Color(0.23137255, 0.23137255, 0.23137255, 0.62352943)
+shadow_offset = Vector2(5, 5)
+
+[node name="MainMenu" type="Control" unique_id=545870379]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_dprmv")
+script = ExtResource("1_u1i5w")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=924827873]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_w1b3e")
+
+[node name="Title" type="Label" parent="." unique_id=406705882]
+custom_minimum_size = Vector2(500, 300)
+layout_mode = 0
+offset_left = 39.0
+offset_top = 4.0
+offset_right = 539.0
+offset_bottom = 304.0
+text = "Birds Must Be Free!"
+label_settings = SubResource("LabelSettings_g1bwr")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=953348489]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.20700002
+anchor_top = 0.446
+anchor_right = 0.294
+anchor_bottom = 0.546
+offset_left = 0.5359802
+offset_top = -0.0079956055
+offset_right = 0.31201172
+offset_bottom = 0.19198608
+
+[node name="NewGameButton" type="Button" parent="VBoxContainer" unique_id=91442508]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+text = "New Game"
+
+[node name="ExitButton" type="Button" parent="VBoxContainer" unique_id=2017695606]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+text = "Exit
+"
+
+[node name="LocaleLabel" type="Label" parent="VBoxContainer" unique_id=1195018243]
+layout_mode = 2
+text = "Language"
+label_settings = ExtResource("5_g1bwr")
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer" unique_id=677219778]
+layout_mode = 2
+selected = 0
+item_count = 2
+popup/item_0/text = "English"
+popup/item_0/id = 0
+popup/item_1/text = "Português"
+popup/item_1/id = 1
+
+[connection signal="pressed" from="VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="item_selected" from="VBoxContainer/OptionButton" to="." method="_on_option_button_item_selected"]

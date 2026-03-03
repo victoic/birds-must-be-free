@@ -9,8 +9,37 @@ class_name Obstacle extends StaticBody2D
 @export var border_padding: int = 50
 @export var reset_position_x: float = 1500
 
+static var obstacle_counter: int = 0
+const TOTAL_OBSTACLE: int = 16
+const OBSTACLE_TEXTURES: Dictionary[int, String] = {
+	0: "res://assets/images/bar_textures/bar_texture_01.png",
+	4: "res://assets/images/bar_textures/bar_texture_02.png",
+	12: "res://assets/images/bar_textures/bar_texture_01.png"
+}
+const OBSTACLE_SHADERS: Dictionary[int, String] = {
+	0:  "",
+	12: "res://shaders/night_outdoor.gdshader"
+}
+
 func _ready() -> void:
 	setup()
+
+func set_textures():
+	obstacle_counter = (obstacle_counter + 1) % TOTAL_OBSTACLE
+	var texture_path: String = OBSTACLE_TEXTURES[0]
+	for j in OBSTACLE_TEXTURES:
+		if j <= obstacle_counter:
+			texture_path = OBSTACLE_TEXTURES[j]
+		else: break
+	var shader_path: String = OBSTACLE_TEXTURES[0]
+	for j in OBSTACLE_SHADERS:
+		print(obstacle_counter)
+		print(j)
+		if j <= obstacle_counter:
+			shader_path = OBSTACLE_SHADERS[j]
+		else: break
+	upper_bar.set_texture(texture_path, shader_path)
+	lower_bar.set_texture(texture_path, shader_path)
 
 func setup():
 	var offset: Vector2 = Vector2(width, 0) / 2
@@ -35,6 +64,7 @@ func setup():
 		Vector2(upper_point.x, window_size.y - lower_bar_start) - offset
 	])
 	lower_bar.setup(lower_points, width, lower_bar_start)
+	set_textures()
 
 func _process(delta: float) -> void:
 	if position.x <= -width:

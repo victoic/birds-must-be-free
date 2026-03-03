@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bggtrd11165nj"
-path="res://.godot/imported/outdoor05-en.png-aab94271dd82dea711a67be4cf0e1079.ctex"
+uid="uid://c24emuyraoon0"
+path="res://.godot/imported/billboard06-pt.png-c974747b293ac366863d77dd12a16d22.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/billboards/common/en/outdoor05-en.png"
-dest_files=["res://.godot/imported/outdoor05-en.png-aab94271dd82dea711a67be4cf0e1079.ctex"]
+source_file="res://assets/sprites/billboards/common/pt/billboard06-pt.png"
+dest_files=["res://.godot/imported/billboard06-pt.png-c974747b293ac366863d77dd12a16d22.ctex"]
 
 [params]
 
