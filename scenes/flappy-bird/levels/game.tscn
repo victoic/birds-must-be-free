@@ -1,0 +1,398 @@
+[gd_scene format=3 uid="uid://8113iln4goci"]
+
+[ext_resource type="Script" uid="uid://bakj8erg7cvef" path="res://scenes/flappy-bird/levels/game.gd" id="1_xx08e"]
+[ext_resource type="Script" uid="uid://ko6kft76c5cq" path="res://scenes/background/backgrounds.gd" id="2_tjdn3"]
+[ext_resource type="PackedScene" uid="uid://bpj3r4vt0dmhh" path="res://scenes/player/player.tscn" id="2_xx08e"]
+[ext_resource type="Script" uid="uid://dv1sppxp6b2tr" path="res://resources/level_data/level_data.gd" id="2_xxt62"]
+[ext_resource type="Texture2D" path="res://assets/sprites/backgrounds-spritesheet.png" id="3_b304k"]
+[ext_resource type="LabelSettings" uid="uid://c8l0eu8rodtrf" path="res://resources/style/label_settings/gui_text.tres" id="4_4ea45"]
+[ext_resource type="Texture2D" uid="uid://dc8wplodyu5q2" path="res://assets/sprites/billboards/common/en/billboard01-en.png" id="4_gf4or"]
+[ext_resource type="Script" uid="uid://dh0y7v8l1aoml" path="res://scenes/background/billboard_background.gd" id="4_laq3l"]
+[ext_resource type="Shader" uid="uid://bew1rgv5robst" path="res://shaders/night_outdoor.gdshader" id="5_gf4or"]
+[ext_resource type="Theme" uid="uid://8g7satdjmjlv" path="res://resources/style/panel_theme.tres" id="7_0gqd1"]
+[ext_resource type="Script" uid="uid://v4p2mwbuns8f" path="res://scenes/obstacle/obstacles.gd" id="7_0kof2"]
+[ext_resource type="FontFile" uid="uid://bdljsf1ltt4ln" path="res://assets/fonts/dogicapixelbold.otf" id="8_njet0"]
+[ext_resource type="LabelSettings" uid="uid://thcqsjlwypb5" path="res://resources/style/label_settings/sub_text.tres" id="9_njet0"]
+[ext_resource type="Script" uid="uid://dm2h40fatp85h" path="res://resources/level_obstacles_data/level_obstacles_data.gd" id="10_tj5l3"]
+[ext_resource type="AudioStream" uid="uid://c5d2qhlwl504b" path="res://assets/sound/music/803654__setuniman__ennui-1x34.wav" id="15_lraw1"]
+[ext_resource type="AudioStream" uid="uid://dmxshoegtnlep" path="res://assets/sound/money/cash01.wav" id="16_tv0tm"]
+[ext_resource type="AudioStream" uid="uid://bncq3dma3wmr" path="res://assets/sound/hit/hit01.wav" id="17_x73nt"]
+
+[sub_resource type="Resource" id="Resource_tj5l3"]
+script = ExtResource("2_xxt62")
+metadata/_custom_type_script = "uid://dv1sppxp6b2tr"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b304k"]
+size = Vector2(10, 648)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gf4or"]
+size = Vector2(500, 20)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0xpkd"]
+shader = ExtResource("5_gf4or")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0gqd1"]
+size = Vector2(20, 648)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0kof2"]
+size = Vector2(20, 648)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_akn2v"]
+size = Vector2(20, 648)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tjdn3"]
+size = Vector2(250, 648)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ea45"]
+size = Vector2(20, 648)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_njet0"]
+size = Vector2(500, 20)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gf4or"]
+shader = ExtResource("5_gf4or")
+
+[sub_resource type="Resource" id="Resource_lraw1"]
+script = ExtResource("10_tj5l3")
+speed = Vector2(-125, 0)
+metadata/_custom_type_script = "uid://dm2h40fatp85h"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tj5l3"]
+size = Vector2(1152, 20)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0gqd1"]
+font = ExtResource("8_njet0")
+font_color = Color(0, 0, 0, 1)
+outline_size = 5
+shadow_size = 5
+shadow_color = Color(0.23137255, 0.23137255, 0.23137255, 0.62352943)
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_x73nt"]
+stream_count = 1
+stream_0 = ExtResource("15_lraw1")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_x73nt"]
+streams_count = 1
+stream_0/stream = ExtResource("16_tv0tm")
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_3noyx"]
+loop = false
+stream_count = 1
+stream_0 = ExtResource("17_x73nt")
+
+[node name="Game" type="Node2D" unique_id=913861713]
+script = ExtResource("1_xx08e")
+level_data = SubResource("Resource_tj5l3")
+
+[node name="Backgrounds" type="Node2D" parent="." unique_id=910547000]
+script = ExtResource("2_tjdn3")
+metadata/_custom_type_script = "uid://ko6kft76c5cq"
+
+[node name="Background1" type="Sprite2D" parent="Backgrounds" unique_id=23969402]
+texture = ExtResource("3_b304k")
+centered = false
+script = ExtResource("4_laq3l")
+base_texture = "res://assets/sprites/backgrounds-spritesheet"
+
+[node name="YearUpArea" type="Area2D" parent="Backgrounds/Background1" unique_id=1461099744]
+position = Vector2(0, 324)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Backgrounds/Background1/YearUpArea" unique_id=72570399]
+shape = SubResource("RectangleShape2D_b304k")
+
+[node name="AwakeningArea" type="Area2D" parent="Backgrounds/Background1" unique_id=241288177]
+position = Vector2(500, 10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Backgrounds/Background1/AwakeningArea" unique_id=1569215367]
+shape = SubResource("RectangleShape2D_gf4or")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Backgrounds/Background1/AwakeningArea" unique_id=1420971408]
+position = Vector2(2500, 0)
+shape = SubResource("RectangleShape2D_gf4or")
+
+[node name="DayBillboardSprite2D" type="Sprite2D" parent="Backgrounds/Background1" unique_id=1874019104]
+position = Vector2(505, 198)
+texture = ExtResource("4_gf4or")
+
+[node name="NightBillboardSprite2D" type="Sprite2D" parent="Backgrounds/Background1" unique_id=1640336976]
+material = SubResource("ShaderMaterial_0xpkd")
+position = Vector2(3008.0002, 208.00003)
+rotation = 0.08726646
+texture = ExtResource("4_gf4or")
+
+[node name="Expenses" type="Area2D" parent="Backgrounds/Background1" unique_id=1364866818]
+position = Vector2(0, 324)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Backgrounds/Background1/Expenses" unique_id=1561340711]
+position = Vector2(750, 0)
+shape = SubResource("RectangleShape2D_0gqd1")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Backgrounds/Background1/Expenses" unique_id=911087693]
+position = Vector2(1750, 0)
+shape = SubResource("RectangleShape2D_0kof2")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Backgrounds/Background1/Expenses" unique_id=759514631]
+position = Vector2(3500, 0)
+shape = SubResource("RectangleShape2D_akn2v")
+
+[node name="BillboardArea2D" type="Area2D" parent="Backgrounds/Background1" unique_id=1603912208]
+position = Vector2(375, 324)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Backgrounds/Background1/BillboardArea2D" unique_id=392653882]
+shape = SubResource("RectangleShape2D_tjdn3")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Backgrounds/Background1/BillboardArea2D" unique_id=461553195]
+position = Vector2(2500, 0)
+shape = SubResource("RectangleShape2D_tjdn3")
+
+[node name="Background2" type="Sprite2D" parent="Backgrounds" unique_id=1651720885]
+position = Vector2(4000, 0)
+texture = ExtResource("3_b304k")
+centered = false
+script = ExtResource("4_laq3l")
+base_texture = "res://assets/sprites/backgrounds-spritesheet"
+
+[node name="YearUpArea" type="Area2D" parent="Backgrounds/Background2" unique_id=954231100]
+position = Vector2(0, 324)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Backgrounds/Background2/YearUpArea" unique_id=697024762]
+shape = SubResource("RectangleShape2D_4ea45")
+
+[node name="AwakeningArea" type="Area2D" parent="Backgrounds/Background2" unique_id=1773725875]
+position = Vector2(500, 10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Backgrounds/Background2/AwakeningArea" unique_id=1667916691]
+shape = SubResource("RectangleShape2D_njet0")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Backgrounds/Background2/AwakeningArea" unique_id=1946044351]
+position = Vector2(2500, 0)
+shape = SubResource("RectangleShape2D_njet0")
+
+[node name="DayBillboardSprite2D" type="Sprite2D" parent="Backgrounds/Background2" unique_id=1890412422]
+position = Vector2(502, 204)
+texture = ExtResource("4_gf4or")
+
+[node name="NightBillboardSprite2D" type="Sprite2D" parent="Backgrounds/Background2" unique_id=1145557652]
+material = SubResource("ShaderMaterial_gf4or")
+position = Vector2(3005, 204)
+rotation = 0.08726646
+texture = ExtResource("4_gf4or")
+
+[node name="Expenses" type="Area2D" parent="Backgrounds/Background2" unique_id=1280520852]
+position = Vector2(0, 324)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Backgrounds/Background2/Expenses" unique_id=693819044]
+position = Vector2(750, 0)
+shape = SubResource("RectangleShape2D_0gqd1")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Backgrounds/Background2/Expenses" unique_id=1738820989]
+position = Vector2(1750, 0)
+shape = SubResource("RectangleShape2D_0kof2")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Backgrounds/Background2/Expenses" unique_id=1540882318]
+position = Vector2(3500, 0)
+shape = SubResource("RectangleShape2D_akn2v")
+
+[node name="BillboardArea2D" type="Area2D" parent="Backgrounds/Background2" unique_id=99428252]
+position = Vector2(375, 324)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Backgrounds/Background2/BillboardArea2D" unique_id=1102679088]
+shape = SubResource("RectangleShape2D_tjdn3")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Backgrounds/Background2/BillboardArea2D" unique_id=896633367]
+position = Vector2(2500, 0)
+shape = SubResource("RectangleShape2D_tjdn3")
+
+[node name="Player" parent="." unique_id=1261520394 instance=ExtResource("2_xx08e")]
+position = Vector2(50, 324)
+
+[node name="Obstacles" type="Node2D" parent="." unique_id=1031277243]
+modulate = Color(1, 1, 1, 0.81960785)
+script = ExtResource("7_0kof2")
+level_obstacles_data = SubResource("Resource_lraw1")
+
+[node name="OutOfBounds" type="StaticBody2D" parent="." unique_id=931142236]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OutOfBounds" unique_id=1831080220]
+position = Vector2(576, -10)
+shape = SubResource("RectangleShape2D_tj5l3")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="OutOfBounds" unique_id=1263530473]
+position = Vector2(576, 658)
+shape = SubResource("RectangleShape2D_tj5l3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2060428185]
+
+[node name="GUI" type="Control" parent="." unique_id=798436025]
+custom_minimum_size = Vector2(1152, 648)
+layout_mode = 3
+anchors_preset = 0
+theme = ExtResource("7_0gqd1")
+
+[node name="NameLabel" type="Label" parent="GUI" unique_id=1297663803]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.028
+anchor_top = 0.039
+anchor_right = 0.07300001
+anchor_bottom = 0.074
+offset_left = -0.25600052
+offset_top = -0.27200127
+offset_right = -0.0960083
+offset_bottom = 0.048000336
+text = "Bill"
+label_settings = SubResource("LabelSettings_0gqd1")
+
+[node name="AgeLabel" type="Label" parent="GUI" unique_id=1355342184]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.054
+anchor_top = 0.085
+anchor_right = 0.16100001
+anchor_bottom = 0.120000005
+offset_left = -0.20800018
+offset_top = -5.080002
+offset_right = 0.5279846
+offset_bottom = -4.760002
+text = "Idade: 25"
+label_settings = ExtResource("4_4ea45")
+
+[node name="MoneyLabel" type="Label" parent="GUI" unique_id=378981729]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.054
+anchor_top = 0.15
+anchor_right = 0.13900001
+anchor_bottom = 0.185
+offset_left = -0.20800018
+offset_top = -22.200005
+offset_right = -0.12802124
+offset_bottom = -21.880005
+text = "Dinheiro: R$ 0.00"
+label_settings = ExtResource("4_4ea45")
+
+[node name="LoanLabel" type="Label" parent="GUI" unique_id=783723734]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.054
+anchor_top = 0.15
+anchor_right = 0.13900001
+anchor_bottom = 0.185
+offset_left = -0.20800018
+offset_top = 2.7999954
+offset_right = -0.12802124
+offset_bottom = 3.119995
+text = "Empréstimo: R$ 0.00"
+label_settings = ExtResource("4_4ea45")
+
+[node name="GameOverPanel" type="Panel" parent="GUI" unique_id=1023290373]
+visible = false
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.37
+anchor_top = 0.26900002
+anchor_right = 0.63000005
+anchor_bottom = 0.731
+offset_left = -0.23999023
+offset_top = -0.31201172
+offset_right = 0.2399292
+offset_bottom = 0.3119812
+pivot_offset = Vector2(150, 150)
+metadata/_edit_use_anchors_ = true
+
+[node name="TitleLabel" type="Label" parent="GUI/GameOverPanel" unique_id=482511703]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.030000001
+anchor_right = 1.0
+anchor_bottom = 0.10700001
+offset_top = 25.0
+offset_bottom = 24.899998
+grow_horizontal = 2
+text = "Game Over"
+label_settings = ExtResource("4_4ea45")
+horizontal_alignment = 1
+
+[node name="QuoteLabel" type="Label" parent="GUI/GameOverPanel" unique_id=911908299]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 55.0
+offset_right = 289.0
+offset_bottom = 64.0
+text = "what mesmerizing cage it was"
+label_settings = ExtResource("9_njet0")
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/GameOverPanel" unique_id=475612564]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 100.0
+offset_right = 289.0
+offset_bottom = 160.0
+
+[node name="AgeLabel" type="Label" parent="GUI/GameOverPanel/VBoxContainer" unique_id=92699695]
+custom_minimum_size = Vector2(278, 0)
+layout_mode = 2
+text = "You lived to X years old."
+label_settings = ExtResource("9_njet0")
+autowrap_mode = 1
+
+[node name="MoneyLabel" type="Label" parent="GUI/GameOverPanel/VBoxContainer" unique_id=1726684489]
+custom_minimum_size = Vector2(278, 0)
+layout_mode = 2
+text = "You accumulated... it doesn't ma
+tter now, does it?"
+label_settings = ExtResource("9_njet0")
+autowrap_mode = 1
+
+[node name="CauseLabel" type="Label" parent="GUI/GameOverPanel/VBoxContainer" unique_id=429966267]
+custom_minimum_size = Vector2(278, 0)
+layout_mode = 2
+text = "You died of overworking"
+label_settings = ExtResource("9_njet0")
+autowrap_mode = 1
+
+[node name="Button" type="Button" parent="GUI/GameOverPanel" unique_id=611517609]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.10300001
+anchor_top = 0.59000003
+anchor_right = 1.0
+anchor_bottom = 0.753
+offset_left = 0.099998474
+offset_top = 24.999985
+offset_right = -31.0
+offset_bottom = 25.09999
+grow_horizontal = 2
+grow_vertical = 0
+text = "Could there be more?"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1111606385]
+stream = SubResource("AudioStreamPlaylist_x73nt")
+autoplay = true
+
+[node name="MoneyAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=425311374]
+stream = SubResource("AudioStreamRandomizer_x73nt")
+volume_db = -2.645
+
+[node name="HitAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=2132458281]
+stream = SubResource("AudioStreamPlaylist_3noyx")
+
+[connection signal="body_entered" from="Backgrounds/Background1/YearUpArea" to="." method="_on_year_up_area_body_entered"]
+[connection signal="body_entered" from="Backgrounds/Background1/AwakeningArea" to="." method="_on_awakening_area_body_entered"]
+[connection signal="body_entered" from="Backgrounds/Background1/Expenses" to="." method="_on_expenses_body_entered"]
+[connection signal="body_entered" from="Backgrounds/Background1/BillboardArea2D" to="." method="_on_billboard_area_2d_body_entered"]
+[connection signal="body_exited" from="Backgrounds/Background1/BillboardArea2D" to="." method="_on_billboard_area_2d_body_exited"]
+[connection signal="body_exited" from="Backgrounds/Background1/BillboardArea2D" to="Backgrounds/Background1" method="_on_billboard_area_2d_body_exited"]
+[connection signal="body_entered" from="Backgrounds/Background2/YearUpArea" to="." method="_on_year_up_area_body_entered"]
+[connection signal="body_entered" from="Backgrounds/Background2/Expenses" to="." method="_on_expenses_body_entered"]
+[connection signal="body_entered" from="Backgrounds/Background2/BillboardArea2D" to="." method="_on_billboard_area_2d_body_entered"]
+[connection signal="body_exited" from="Backgrounds/Background2/BillboardArea2D" to="." method="_on_billboard_area_2d_body_exited"]
+[connection signal="body_exited" from="Backgrounds/Background2/BillboardArea2D" to="Backgrounds/Background2" method="_on_billboard_area_2d_body_exited"]
+[connection signal="hit_something" from="Player" to="." method="_on_player_hit_something"]
+[connection signal="loan_changed" from="Player" to="." method="_on_player_loan_changed"]
+[connection signal="pressed" from="GUI/GameOverPanel/Button" to="." method="_on_button_pressed"]

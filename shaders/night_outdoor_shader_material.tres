@@ -1,0 +1,6 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cosgkslsjmmba"]
+
+[ext_resource type="Shader" uid="uid://bew1rgv5robst" path="res://shaders/night_outdoor.gdshader" id="1_koivl"]
+
+[resource]
+shader = ExtResource("1_koivl")

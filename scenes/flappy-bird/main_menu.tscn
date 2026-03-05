@@ -2,9 +2,11 @@
 
 [ext_resource type="Theme" uid="uid://8g7satdjmjlv" path="res://resources/style/panel_theme.tres" id="1_dprmv"]
 [ext_resource type="Script" uid="uid://b7cyut5ky1ynb" path="res://scenes/flappy-bird/main_menu.gd" id="1_u1i5w"]
-[ext_resource type="Texture2D" uid="uid://bjnf152cngsyk" path="res://assets/images/backgrounds/menu-bg.png" id="2_w1b3e"]
 [ext_resource type="FontFile" uid="uid://bdljsf1ltt4ln" path="res://assets/fonts/dogicapixelbold.otf" id="3_dprmv"]
+[ext_resource type="Texture2D" uid="uid://dbs3yalditdo6" path="res://assets/images/backgrounds/menu-bg01.png" id="3_g1bwr"]
 [ext_resource type="LabelSettings" uid="uid://c8l0eu8rodtrf" path="res://resources/style/label_settings/gui_text.tres" id="5_g1bwr"]
+[ext_resource type="AudioStream" uid="uid://c2m4rqtlft2v8" path="res://assets/sound/music/242080__orangefreesounds__lounge-ambient-music-loop.wav" id="6_g1bwr"]
+[ext_resource type="LabelSettings" uid="uid://thcqsjlwypb5" path="res://resources/style/label_settings/sub_text.tres" id="6_pex0p"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_g1bwr"]
 font = ExtResource("3_dprmv")
@@ -29,15 +31,20 @@ script = ExtResource("1_u1i5w")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("2_w1b3e")
+texture = ExtResource("3_g1bwr")
 
 [node name="Title" type="Label" parent="." unique_id=406705882]
 custom_minimum_size = Vector2(500, 300)
-layout_mode = 0
-offset_left = 39.0
-offset_top = 4.0
-offset_right = 539.0
-offset_bottom = 304.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.044000003
+anchor_top = 0.012
+anchor_right = 0.47800002
+anchor_bottom = 0.47500002
+offset_left = -50.688004
+offset_top = 0.22399998
+offset_right = -50.656006
+offset_bottom = 0.19998169
 text = "Birds Must Be Free!"
 label_settings = SubResource("LabelSettings_g1bwr")
 horizontal_alignment = 1
@@ -47,14 +54,14 @@ autowrap_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=953348489]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.20700002
+anchor_left = 0.16100001
 anchor_top = 0.446
-anchor_right = 0.294
-anchor_bottom = 0.546
-offset_left = 0.5359802
+anchor_right = 0.273
+anchor_bottom = 0.707
+offset_left = 0.5279846
 offset_top = -0.0079956055
-offset_right = 0.31201172
-offset_bottom = 0.19198608
+offset_right = -0.4960022
+offset_bottom = -0.13601685
 
 [node name="NewGameButton" type="Button" parent="VBoxContainer" unique_id=91442508]
 custom_minimum_size = Vector2(0, 25)
@@ -81,6 +88,100 @@ popup/item_0/id = 0
 popup/item_1/text = "Português"
 popup/item_1/id = 1
 
+[node name="CreditsButton" type="Button" parent="VBoxContainer" unique_id=848731387]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+text = "Credits"
+
+[node name="Credits" type="Panel" parent="." unique_id=586130395]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.043
+anchor_top = 0.36
+anchor_right = 0.39100003
+anchor_bottom = 0.83000004
+offset_left = 0.4639969
+offset_top = -0.28001404
+offset_right = -0.43203735
+offset_bottom = 0.15997314
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Credits" unique_id=1586789880]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 54.0
+offset_right = -9.0
+offset_bottom = -73.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Credits/VBoxContainer" unique_id=534473955]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+text = "Lounge Ambient Music Loop by orangefreesounds -- https://freesound.org/s/242080/ -- License: Attribution NonCommercial 3.0"
+label_settings = ExtResource("6_pex0p")
+autowrap_mode = 2
+
+[node name="Label2" type="Label" parent="Credits/VBoxContainer" unique_id=860578845]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+text = "ennui 1x34 by Setuniman -- https://freesound.org/s/803654/ -- License: Attribution NonCommercial 4.0"
+label_settings = ExtResource("6_pex0p")
+autowrap_mode = 2
+
+[node name="Label3" type="Label" parent="Credits/VBoxContainer" unique_id=859602259]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+text = "Energetic guitar Loop @Joan in B flat by jn. -- https://freesound.org/s/819576/ -- License: Attribution 4.0"
+label_settings = ExtResource("6_pex0p")
+autowrap_mode = 2
+
+[node name="Label4" type="Label" parent="Credits/VBoxContainer" unique_id=1458033878]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+text = "muted_thud_1.wav by farbin -- https://freesound.org/s/36790/ -- License: Sampling+"
+label_settings = ExtResource("6_pex0p")
+autowrap_mode = 2
+
+[node name="MusicByLabel" type="Label" parent="Credits" unique_id=1870284981]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 13.0
+offset_top = 17.0
+offset_right = -271.0
+offset_bottom = -265.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Music by"
+label_settings = ExtResource("5_g1bwr")
+
+[node name="BackButton" type="Button" parent="Credits" unique_id=1732952599]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.37500003
+anchor_top = 0.86600006
+anchor_right = 0.625
+anchor_bottom = 0.9480001
+offset_left = -1.5258789e-05
+offset_top = -0.13000488
+offset_bottom = -0.14001465
+grow_horizontal = 2
+grow_vertical = 0
+text = "Back"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1161191118]
+stream = ExtResource("6_g1bwr")
+autoplay = true
+
 [connection signal="pressed" from="VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="item_selected" from="VBoxContainer/OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="pressed" from="VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="Credits/BackButton" to="." method="_on_back_button_pressed"]

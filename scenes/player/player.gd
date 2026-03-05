@@ -3,15 +3,19 @@ class_name Player extends CharacterBody2D
 signal hit_something
 signal money_changed
 signal loan_changed
+signal game_end
 
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var money_animation: Label = $MoneyAnimationLabel
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var audio_stream: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 const MAX_AGE: int = 80
 const DEATH_ANIMATION: StringName = "death"
 const MONEY_ANIMATION: StringName = "money_change"
 
+@export var move_x: bool = false
 @export var gravity: float = 980.0
 @export var jump_force: float = -425.0
 @export var age: int = 25
@@ -24,6 +28,7 @@ const MONEY_ANIMATION: StringName = "money_change"
 @export var sprite_frame_y: int = 0
 
 var game_paused: bool = false
+var game_over: bool = false
 
 func _ready() -> void:
 	money_animation.visible = false
@@ -63,6 +68,8 @@ func death() -> void:
 	is_dead = true
 
 func _physics_process(delta: float) -> void:
+	if move_x:
+		velocity.x = abs(GlobalsData.SPEED.x)
 	if not game_paused:
 		velocity.y += gravity * delta
 		if velocity.y > 0:
@@ -70,6 +77,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			sprite.frame_coords = Vector2i(1, sprite_frame_y)
 		if Input.is_action_just_pressed("move"):
+			audio_stream.play()
 			velocity.y = jump_force
 			sprite.frame_coords = Vector2i(1, sprite_frame_y) if sprite.frame_coords.x == 0 else Vector2i(0, sprite_frame_y)
 		if move_and_slide():
@@ -78,3 +86,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		if not is_dead:
 			death()
+	if position.x >= get_viewport_rect().size.x / 2 and not game_over:
+		game_over = true
+		collision_shape.disabled = true
+		game_end.emit()

@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://cniwj32qotrnu"]
+
+[ext_resource type="Texture2D" uid="uid://dtbmbyh85qfxk" path="res://assets/sprites/revolution_level.png" id="1_a1hp7"]
+[ext_resource type="Script" uid="uid://dqty2oqrdeibj" path="res://scenes/flappy-bird/revolution.gd" id="1_lem7p"]
+[ext_resource type="PackedScene" uid="uid://bpj3r4vt0dmhh" path="res://scenes/player/player.tscn" id="2_lem7p"]
+[ext_resource type="Script" uid="uid://v4p2mwbuns8f" path="res://scenes/obstacle/obstacles.gd" id="3_67ymh"]
+[ext_resource type="Script" uid="uid://dm2h40fatp85h" path="res://resources/levels/level.gd" id="4_6y5tc"]
+
+[sub_resource type="Resource" id="Resource_fs2ty"]
+script = ExtResource("4_6y5tc")
+TOTAL_OBSTACLE = 96
+OBSTACLE_TEXTURES = Dictionary[int, String]({
+0: "res://assets/images/bar_textures/bar_texture_revolution_01.png",
+4: "res://assets/images/bar_textures/bar_texture_revolution_02.png",
+12: "res://assets/images/bar_textures/bar_texture_revolution_03.png"
+})
+OBSTACLE_SHADERS = Dictionary[int, String]({
+0: "res://shaders/night_outdoor.gdshader",
+2: "none",
+48: "none"
+})
+metadata/_custom_type_script = "uid://dm2h40fatp85h"
+
+[node name="Game" type="Node2D" unique_id=1752568928]
+script = ExtResource("1_lem7p")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1888412353]
+texture = ExtResource("1_a1hp7")
+centered = false
+
+[node name="Obstacles" type="Node2D" parent="." unique_id=1438188518]
+script = ExtResource("3_67ymh")
+level_data = SubResource("Resource_fs2ty")
+
+[node name="Player" parent="." unique_id=1261520394 instance=ExtResource("2_lem7p")]
+position = Vector2(67.99999, 308.99997)

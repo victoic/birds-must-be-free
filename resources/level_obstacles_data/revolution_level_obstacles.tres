@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Level" format=3 uid="uid://c1g3b0tudp23v"]
+
+[ext_resource type="Script" uid="uid://dm2h40fatp85h" path="res://resources/level_obstacles_data/level_obstacles_data.gd" id="3_ywf6i"]
+
+[resource]
+script = ExtResource("3_ywf6i")
+TOTAL_OBSTACLE = 96
+OBSTACLE_TEXTURES = Dictionary[int, String]({
+0: "res://assets/images/bar_textures/bar_texture_revolution_01.png",
+4: "res://assets/images/bar_textures/bar_texture_revolution_02.png",
+12: "res://assets/images/bar_textures/bar_texture_revolution_03.png"
+})
+OBSTACLE_SHADERS = Dictionary[int, String]({
+0: "res://shaders/night_outdoor_shader_material.tres",
+12: "res://shaders/normal_shader_material.tres"
+})
+metadata/_custom_type_script = "uid://dm2h40fatp85h"

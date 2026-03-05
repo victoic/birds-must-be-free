@@ -10,14 +10,17 @@ config_version=5
 
 [application]
 
-config/name="02 - Flappy Bird"
+config/name="Birds Must Be Free"
+config/description="A Flappy Bird game about socialism"
+config/version="1.0"
 run/main_scene="uid://3j5pe72bi6uh"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://mosmxyijku26"
 
 [autoload]
 
 GlobalsData="*uid://6xlt8hlob0qp"
+Stats="*uid://c5l8qxr4st1rs"
 
 [editor]
 

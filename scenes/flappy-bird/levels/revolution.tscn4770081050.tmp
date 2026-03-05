@@ -1,0 +1,339 @@
+[gd_scene format=3 uid="uid://cniwj32qotrnu"]
+
+[ext_resource type="Script" uid="uid://bakj8erg7cvef" path="res://scenes/flappy-bird/levels/game.gd" id="1_mbnq5"]
+[ext_resource type="Script" uid="uid://dv1sppxp6b2tr" path="res://resources/level_data/level_data.gd" id="2_1dxek"]
+[ext_resource type="Script" uid="uid://ko6kft76c5cq" path="res://scenes/background/backgrounds.gd" id="2_e5yai"]
+[ext_resource type="Texture2D" uid="uid://dtbmbyh85qfxk" path="res://assets/sprites/revolution_level.png" id="3_1dxek"]
+[ext_resource type="Script" uid="uid://cgljwan7cd6wv" path="res://scenes/background/background.gd" id="4_eklwp"]
+[ext_resource type="Script" uid="uid://v4p2mwbuns8f" path="res://scenes/obstacle/obstacles.gd" id="5_q772t"]
+[ext_resource type="Script" uid="uid://dm2h40fatp85h" path="res://resources/level_obstacles_data/level_obstacles_data.gd" id="7_1dxek"]
+[ext_resource type="PackedScene" uid="uid://bpj3r4vt0dmhh" path="res://scenes/player/player.tscn" id="7_n2q46"]
+[ext_resource type="Theme" uid="uid://8g7satdjmjlv" path="res://resources/style/panel_theme.tres" id="8_7p3h4"]
+[ext_resource type="FontFile" uid="uid://bdljsf1ltt4ln" path="res://assets/fonts/dogicapixelbold.otf" id="9_e5yai"]
+[ext_resource type="LabelSettings" uid="uid://c8l0eu8rodtrf" path="res://resources/style/label_settings/gui_text.tres" id="9_iw8bc"]
+[ext_resource type="LabelSettings" uid="uid://thcqsjlwypb5" path="res://resources/style/label_settings/sub_text.tres" id="10_xt14r"]
+
+[sub_resource type="Resource" id="Resource_eklwp"]
+script = ExtResource("2_1dxek")
+is_revolution = true
+speed = Vector2(-250, 0)
+metadata/_custom_type_script = "uid://dv1sppxp6b2tr"
+
+[sub_resource type="Resource" id="Resource_q772t"]
+script = ExtResource("7_1dxek")
+TOTAL_OBSTACLE = 96
+OBSTACLE_TEXTURES = Dictionary[int, String]({
+0: "res://assets/images/bar_textures/bar_texture_revolution_01.png",
+4: "res://assets/images/bar_textures/bar_texture_revolution_02.png",
+12: "res://assets/images/bar_textures/bar_texture_revolution_03.png"
+})
+OBSTACLE_SHADERS = Dictionary[int, String]({
+0: "res://shaders/night_outdoor_shader_material.tres",
+12: "res://shaders/normal_shader_material.tres"
+})
+metadata/_custom_type_script = "uid://dm2h40fatp85h"
+
+[sub_resource type="LabelSettings" id="LabelSettings_1dxek"]
+font = ExtResource("9_e5yai")
+font_color = Color(0, 0, 0, 1)
+outline_size = 5
+shadow_size = 5
+shadow_color = Color(0.23137255, 0.23137255, 0.23137255, 0.62352943)
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_eklwp"]
+font = ExtResource("9_e5yai")
+font_size = 42
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 5
+shadow_color = Color(0.23137255, 0.23137255, 0.23137255, 0.62352943)
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="Animation" id="Animation_1dxek"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GUI/EndingColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GUI/EndingLabel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GUI/EndingLabel:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Birds"]
+}
+
+[sub_resource type="Animation" id="Animation_eklwp"]
+resource_name = "end_scene"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GUI/EndingColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GUI/EndingLabel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GUI/EndingLabel:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1, 1.75, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": ["Birds", "Birds Are", "Birds Are Free!"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q772t"]
+_data = {
+&"RESET": SubResource("Animation_1dxek"),
+&"end_scene": SubResource("Animation_eklwp")
+}
+
+[node name="Game" type="Node2D" unique_id=1752568928]
+script = ExtResource("1_mbnq5")
+level_data = SubResource("Resource_eklwp")
+
+[node name="Backgrounds" type="Node2D" parent="." unique_id=437837547]
+script = ExtResource("2_e5yai")
+is_looping = false
+
+[node name="Background" type="Sprite2D" parent="Backgrounds" unique_id=1888412353]
+texture = ExtResource("3_1dxek")
+centered = false
+script = ExtResource("4_eklwp")
+
+[node name="Player" parent="." unique_id=1261520394 instance=ExtResource("7_n2q46")]
+position = Vector2(67.99999, 308.99997)
+
+[node name="Obstacles" type="Node2D" parent="." unique_id=1438188518]
+script = ExtResource("5_q772t")
+level_obstacles_data = SubResource("Resource_q772t")
+bar_start_x = 500
+gap_between_bars = null
+
+[node name="GUI" type="Control" parent="." unique_id=1296650788]
+custom_minimum_size = Vector2(1152, 648)
+layout_mode = 3
+anchors_preset = 0
+theme = ExtResource("8_7p3h4")
+
+[node name="NameLabel" type="Label" parent="GUI" unique_id=1052874686]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.028
+anchor_top = 0.039
+anchor_right = 0.07300001
+anchor_bottom = 0.074
+offset_left = -0.25600052
+offset_top = -0.27200127
+offset_right = -0.0960083
+offset_bottom = 0.048000336
+text = "Bill"
+label_settings = SubResource("LabelSettings_1dxek")
+
+[node name="AgeLabel" type="Label" parent="GUI" unique_id=1380985374]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.054
+anchor_top = 0.085
+anchor_right = 0.16100001
+anchor_bottom = 0.120000005
+offset_left = -0.20800018
+offset_top = -5.080002
+offset_right = 0.5279846
+offset_bottom = -4.760002
+text = "Idade: 25"
+label_settings = ExtResource("9_iw8bc")
+
+[node name="MoneyLabel" type="Label" parent="GUI" unique_id=842021383]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.054
+anchor_top = 0.15
+anchor_right = 0.13900001
+anchor_bottom = 0.185
+offset_left = -0.20800018
+offset_top = -22.200005
+offset_right = 135.87198
+offset_bottom = -21.880005
+text = "Dinheiro: R$ 0.00"
+label_settings = ExtResource("9_iw8bc")
+
+[node name="LoanLabel" type="Label" parent="GUI" unique_id=1452615960]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.054
+anchor_top = 0.15
+anchor_right = 0.13900001
+anchor_bottom = 0.185
+offset_left = -0.20800018
+offset_top = 2.7999954
+offset_right = 179.87198
+offset_bottom = 3.119995
+text = "Empréstimo: R$ 0.00"
+label_settings = ExtResource("9_iw8bc")
+
+[node name="GameOverPanel" type="Panel" parent="GUI" unique_id=1506211497]
+visible = false
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.37
+anchor_top = 0.26900002
+anchor_right = 0.63000005
+anchor_bottom = 0.731
+offset_left = -0.23999023
+offset_top = -0.31201172
+offset_right = 0.2399292
+offset_bottom = 0.3119812
+pivot_offset = Vector2(150, 150)
+metadata/_edit_use_anchors_ = true
+
+[node name="TitleLabel" type="Label" parent="GUI/GameOverPanel" unique_id=1543741582]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.030000001
+anchor_right = 1.0
+anchor_bottom = 0.10700001
+offset_top = 25.0
+offset_bottom = 24.899998
+grow_horizontal = 2
+text = "Game Over"
+label_settings = ExtResource("9_iw8bc")
+horizontal_alignment = 1
+
+[node name="QuoteLabel" type="Label" parent="GUI/GameOverPanel" unique_id=2042510281]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 55.0
+offset_right = 289.0
+offset_bottom = 64.0
+text = "what mesmerizing cage it was"
+label_settings = ExtResource("10_xt14r")
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/GameOverPanel" unique_id=1041364489]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 100.0
+offset_right = 289.0
+offset_bottom = 160.0
+
+[node name="AgeLabel" type="Label" parent="GUI/GameOverPanel/VBoxContainer" unique_id=1262973480]
+custom_minimum_size = Vector2(278, 0)
+layout_mode = 2
+text = "You lived to X years old."
+label_settings = ExtResource("10_xt14r")
+autowrap_mode = 1
+
+[node name="MoneyLabel" type="Label" parent="GUI/GameOverPanel/VBoxContainer" unique_id=1391182559]
+custom_minimum_size = Vector2(278, 0)
+layout_mode = 2
+text = "You accumulated... it doesn't ma
+tter now, does it?"
+label_settings = ExtResource("10_xt14r")
+autowrap_mode = 1
+
+[node name="CauseLabel" type="Label" parent="GUI/GameOverPanel/VBoxContainer" unique_id=1369077098]
+custom_minimum_size = Vector2(278, 0)
+layout_mode = 2
+text = "You died of overworking"
+label_settings = ExtResource("10_xt14r")
+autowrap_mode = 1
+
+[node name="Button" type="Button" parent="GUI/GameOverPanel" unique_id=2003324085]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.10300001
+anchor_top = 0.59000003
+anchor_right = 1.0
+anchor_bottom = 0.753
+offset_left = 0.099998474
+offset_top = 24.999985
+offset_right = -31.0
+offset_bottom = 25.09999
+grow_horizontal = 2
+grow_vertical = 0
+text = "Could there be more?"
+
+[node name="EndingColorRect" type="ColorRect" parent="GUI" unique_id=632364885]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(1152, 648)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="EndingLabel" type="Label" parent="GUI" unique_id=1836097305]
+visible = false
+custom_minimum_size = Vector2(500, 300)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 302.0
+offset_right = -302.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Birds"
+label_settings = SubResource("LabelSettings_eklwp")
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1075092495]
+libraries/ = SubResource("AnimationLibrary_q772t")
+
+[connection signal="background_end" from="Backgrounds" to="." method="_on_backgrounds_background_end"]
+[connection signal="pressed" from="GUI/GameOverPanel/Button" to="." method="_on_button_pressed"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_player_animation_finished"]

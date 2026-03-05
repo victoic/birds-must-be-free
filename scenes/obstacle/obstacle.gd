@@ -9,35 +9,22 @@ class_name Obstacle extends StaticBody2D
 @export var border_padding: int = 50
 @export var reset_position_x: float = 1500
 
-static var obstacle_counter: int = 0
-const TOTAL_OBSTACLE: int = 16
-const OBSTACLE_TEXTURES: Dictionary[int, String] = {
-	0: "res://assets/images/bar_textures/bar_texture_01.png",
-	4: "res://assets/images/bar_textures/bar_texture_02.png",
-	12: "res://assets/images/bar_textures/bar_texture_01.png"
-}
-const OBSTACLE_SHADERS: Dictionary[int, String] = {
-	0:  "",
-	12: "res://shaders/night_outdoor.gdshader"
-}
+var level_obstacles_data: LevelObstaclesData
 
 func _ready() -> void:
 	setup()
 
 func set_textures():
-	obstacle_counter = (obstacle_counter + 1) % TOTAL_OBSTACLE
-	var texture_path: String = OBSTACLE_TEXTURES[0]
-	for j in OBSTACLE_TEXTURES:
-		if j <= obstacle_counter:
-			texture_path = OBSTACLE_TEXTURES[j]
+	level_obstacles_data.obstacle_counter = (level_obstacles_data.obstacle_counter + 1) % level_obstacles_data.TOTAL_OBSTACLE
+	var texture_path: String = level_obstacles_data.OBSTACLE_TEXTURES[0]
+	for j in level_obstacles_data.OBSTACLE_TEXTURES:
+		if j <= level_obstacles_data.obstacle_counter:
+			texture_path = level_obstacles_data.OBSTACLE_TEXTURES[j]
 		else: break
-	var shader_path: String = OBSTACLE_TEXTURES[0]
-	for j in OBSTACLE_SHADERS:
-		print(obstacle_counter)
-		print(j)
-		if j <= obstacle_counter:
-			shader_path = OBSTACLE_SHADERS[j]
-		else: break
+	var shader_path: String = level_obstacles_data.OBSTACLE_SHADERS[0]
+	for j in level_obstacles_data.OBSTACLE_SHADERS:
+		if j <= level_obstacles_data.obstacle_counter:
+			shader_path = level_obstacles_data.OBSTACLE_SHADERS[j]
 	upper_bar.set_texture(texture_path, shader_path)
 	lower_bar.set_texture(texture_path, shader_path)
 
