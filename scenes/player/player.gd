@@ -72,7 +72,6 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("move"):
 			velocity.y = jump_force
 			sprite.frame_coords = Vector2i(1, sprite_frame_y) if sprite.frame_coords.x == 0 else Vector2i(0, sprite_frame_y)
-			print("Player frame_coords = {0}".format([sprite.frame_coords]))
 		if move_and_slide():
 			hit_something.emit()
 			game_paused = true
