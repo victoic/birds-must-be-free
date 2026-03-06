@@ -12,7 +12,7 @@
 [ext_resource type="FontFile" uid="uid://bdljsf1ltt4ln" path="res://assets/fonts/dogicapixelbold.otf" id="9_e5yai"]
 [ext_resource type="LabelSettings" uid="uid://c8l0eu8rodtrf" path="res://resources/style/label_settings/gui_text.tres" id="9_iw8bc"]
 [ext_resource type="LabelSettings" uid="uid://thcqsjlwypb5" path="res://resources/style/label_settings/sub_text.tres" id="10_xt14r"]
-[ext_resource type="AudioStream" uid="uid://cpognib0s2pk6" path="res://assets/sound/music/819576__jn__energetic-guitar-loop-joan-in-b-flat.wav" id="13_eklwp"]
+[ext_resource type="AudioStream" uid="uid://bk8a6ip0hwnf0" path="res://resources/audio/revolution_playlist.tres" id="13_q772t"]
 [ext_resource type="AudioStream" uid="uid://dmxshoegtnlep" path="res://assets/sound/money/cash01.wav" id="14_q772t"]
 
 [sub_resource type="Resource" id="Resource_eklwp"]
@@ -135,10 +135,6 @@ outline_color = Color(0, 0, 0, 1)
 shadow_size = 5
 shadow_color = Color(0.23137255, 0.23137255, 0.23137255, 0.62352943)
 shadow_offset = Vector2(5, 5)
-
-[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_q772t"]
-stream_count = 1
-stream_0 = ExtResource("13_eklwp")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_q772t"]
 streams_count = 1
@@ -371,7 +367,7 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=838064659]
-stream = SubResource("AudioStreamPlaylist_q772t")
+stream = ExtResource("13_q772t")
 autoplay = true
 
 [node name="MoneyAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=894358559]

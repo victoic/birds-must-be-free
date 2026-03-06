@@ -1,0 +1,7 @@
+[gd_resource type="AudioStreamPlaylist" format=3 uid="uid://dghno6ekli36g"]
+
+[ext_resource type="AudioStream" uid="uid://c2m4rqtlft2v8" path="res://assets/sound/music/242080__orangefreesounds__lounge-ambient-music-loop.wav" id="1_j4yiu"]
+
+[resource]
+stream_count = 1
+stream_0 = ExtResource("1_j4yiu")

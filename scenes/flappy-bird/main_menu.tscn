@@ -5,8 +5,8 @@
 [ext_resource type="FontFile" uid="uid://bdljsf1ltt4ln" path="res://assets/fonts/dogicapixelbold.otf" id="3_dprmv"]
 [ext_resource type="Texture2D" uid="uid://dbs3yalditdo6" path="res://assets/images/backgrounds/menu-bg01.png" id="3_g1bwr"]
 [ext_resource type="LabelSettings" uid="uid://c8l0eu8rodtrf" path="res://resources/style/label_settings/gui_text.tres" id="5_g1bwr"]
-[ext_resource type="AudioStream" uid="uid://c2m4rqtlft2v8" path="res://assets/sound/music/242080__orangefreesounds__lounge-ambient-music-loop.wav" id="6_g1bwr"]
 [ext_resource type="LabelSettings" uid="uid://thcqsjlwypb5" path="res://resources/style/label_settings/sub_text.tres" id="6_pex0p"]
+[ext_resource type="AudioStream" uid="uid://dghno6ekli36g" path="res://resources/audio/menu_playlist.tres" id="7_pex0p"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_g1bwr"]
 font = ExtResource("3_dprmv")
@@ -177,7 +177,7 @@ grow_vertical = 0
 text = "Back"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1161191118]
-stream = ExtResource("6_g1bwr")
+stream = ExtResource("7_pex0p")
 autoplay = true
 
 [connection signal="pressed" from="VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]

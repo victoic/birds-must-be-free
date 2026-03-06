@@ -1,0 +1,7 @@
+[gd_resource type="AudioStreamPlaylist" format=3 uid="uid://bk8a6ip0hwnf0"]
+
+[ext_resource type="AudioStream" uid="uid://cpognib0s2pk6" path="res://assets/sound/music/819576__jn__energetic-guitar-loop-joan-in-b-flat.wav" id="1_b453p"]
+
+[resource]
+stream_count = 1
+stream_0 = ExtResource("1_b453p")

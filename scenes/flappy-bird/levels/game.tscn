@@ -14,7 +14,7 @@
 [ext_resource type="FontFile" uid="uid://bdljsf1ltt4ln" path="res://assets/fonts/dogicapixelbold.otf" id="8_njet0"]
 [ext_resource type="LabelSettings" uid="uid://thcqsjlwypb5" path="res://resources/style/label_settings/sub_text.tres" id="9_njet0"]
 [ext_resource type="Script" uid="uid://dm2h40fatp85h" path="res://resources/level_obstacles_data/level_obstacles_data.gd" id="10_tj5l3"]
-[ext_resource type="AudioStream" uid="uid://c5d2qhlwl504b" path="res://assets/sound/music/803654__setuniman__ennui-1x34.wav" id="15_lraw1"]
+[ext_resource type="AudioStream" uid="uid://dlegnrwvvxf1l" path="res://resources/audio/game_playlist.tres" id="15_x73nt"]
 [ext_resource type="AudioStream" uid="uid://dmxshoegtnlep" path="res://assets/sound/money/cash01.wav" id="16_tv0tm"]
 [ext_resource type="AudioStream" uid="uid://bncq3dma3wmr" path="res://assets/sound/hit/hit01.wav" id="17_x73nt"]
 
@@ -67,10 +67,6 @@ outline_size = 5
 shadow_size = 5
 shadow_color = Color(0.23137255, 0.23137255, 0.23137255, 0.62352943)
 shadow_offset = Vector2(5, 5)
-
-[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_x73nt"]
-stream_count = 1
-stream_0 = ExtResource("15_lraw1")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_x73nt"]
 streams_count = 1
@@ -384,7 +380,7 @@ horizontal_alignment = 1
 autowrap_mode = 1
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1111606385]
-stream = SubResource("AudioStreamPlaylist_x73nt")
+stream = ExtResource("15_x73nt")
 autoplay = true
 
 [node name="MoneyAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=425311374]
