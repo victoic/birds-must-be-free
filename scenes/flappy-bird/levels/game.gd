@@ -51,6 +51,11 @@ func _ready() -> void:
 	GlobalsData.game_paused = false
 	GlobalsData.SPEED = level_data.speed
 
+func _process(delta: float) -> void:
+	if game_over_panel.visible == true and Input.is_action_just_pressed("restart"):
+		obstacles.level_obstacles_data.obstacle_counter = 0
+		get_tree().reload_current_scene()
+
 func set_gui_text() -> void:
 	age_label.text = GlobalsData.locale[GlobalsData.selected_language]['game_age'].format([player.age])
 	loan_label.text = GlobalsData.locale[GlobalsData.selected_language]['game_loan'].format(["%.2f" % player.loan_to_pay])
@@ -142,6 +147,7 @@ func _on_player_animation_finished(anim_name: StringName) -> void:
 		game_over_panel.get_node("VBoxContainer/MoneyLabel").text = GlobalsData.locale[GlobalsData.selected_language][money]
 		game_over_panel.get_node("VBoxContainer/CauseLabel").text = GlobalsData.locale[GlobalsData.selected_language][cause]
 		game_over_panel.get_node("Button").text = GlobalsData.locale[GlobalsData.selected_language][button]
+		game_over_panel.get_node("RestartLabel").text = GlobalsData.locale[GlobalsData.selected_language]['game_over_restart']
 		game_over_panel.visible = true
 	elif anim_name == "end_scene":
 		call_deferred("change_scene", "res://scenes/flappy-bird/main_menu.tscn")

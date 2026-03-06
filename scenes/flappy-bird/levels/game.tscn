@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://ko6kft76c5cq" path="res://scenes/background/backgrounds.gd" id="2_tjdn3"]
 [ext_resource type="PackedScene" uid="uid://bpj3r4vt0dmhh" path="res://scenes/player/player.tscn" id="2_xx08e"]
 [ext_resource type="Script" uid="uid://dv1sppxp6b2tr" path="res://resources/level_data/level_data.gd" id="2_xxt62"]
-[ext_resource type="Texture2D" path="res://assets/sprites/backgrounds-spritesheet.png" id="3_b304k"]
+[ext_resource type="Texture2D" uid="uid://b14hkd6rkm8ri" path="res://assets/sprites/backgrounds-spritesheet_en.png" id="3_b304k"]
 [ext_resource type="LabelSettings" uid="uid://c8l0eu8rodtrf" path="res://resources/style/label_settings/gui_text.tres" id="4_4ea45"]
 [ext_resource type="Texture2D" uid="uid://dc8wplodyu5q2" path="res://assets/sprites/billboards/common/en/billboard01-en.png" id="4_gf4or"]
 [ext_resource type="Script" uid="uid://dh0y7v8l1aoml" path="res://scenes/background/billboard_background.gd" id="4_laq3l"]
@@ -370,6 +370,18 @@ offset_bottom = 25.09999
 grow_horizontal = 2
 grow_vertical = 0
 text = "Could there be more?"
+
+[node name="RestartLabel" type="Label" parent="GUI/GameOverPanel" unique_id=1950339647]
+custom_minimum_size = Vector2(278, 0)
+layout_mode = 0
+offset_left = 10.0
+offset_top = 263.0
+offset_right = 288.0
+offset_bottom = 272.0
+text = "Press 'R' to restart"
+label_settings = ExtResource("9_njet0")
+horizontal_alignment = 1
+autowrap_mode = 1
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1111606385]
 stream = SubResource("AudioStreamPlaylist_x73nt")

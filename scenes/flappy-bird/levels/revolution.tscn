@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bakj8erg7cvef" path="res://scenes/flappy-bird/levels/game.gd" id="1_mbnq5"]
 [ext_resource type="Script" uid="uid://dv1sppxp6b2tr" path="res://resources/level_data/level_data.gd" id="2_1dxek"]
 [ext_resource type="Script" uid="uid://ko6kft76c5cq" path="res://scenes/background/backgrounds.gd" id="2_e5yai"]
-[ext_resource type="Texture2D" path="res://assets/sprites/revolution_level.png" id="3_1dxek"]
+[ext_resource type="Texture2D" uid="uid://b14hkd6rkm8ri" path="res://assets/sprites/backgrounds-spritesheet_en.png" id="3_1dxek"]
 [ext_resource type="Script" uid="uid://cgljwan7cd6wv" path="res://scenes/background/background.gd" id="4_eklwp"]
 [ext_resource type="Script" uid="uid://v4p2mwbuns8f" path="res://scenes/obstacle/obstacles.gd" id="5_q772t"]
 [ext_resource type="Script" uid="uid://dm2h40fatp85h" path="res://resources/level_obstacles_data/level_obstacles_data.gd" id="7_1dxek"]
@@ -139,6 +139,10 @@ shadow_offset = Vector2(5, 5)
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_q772t"]
 stream_count = 1
 stream_0 = ExtResource("13_eklwp")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_q772t"]
+streams_count = 1
+stream_0/stream = ExtResource("14_q772t")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_n7jku"]
 streams_count = 1
@@ -327,16 +331,28 @@ autowrap_mode = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.10300001
-anchor_top = 0.59000003
+anchor_top = 0.67300004
 anchor_right = 1.0
-anchor_bottom = 0.753
+anchor_bottom = 0.837
 offset_left = 0.099998474
-offset_top = 24.999985
+offset_top = 0.099990845
 offset_right = -31.0
-offset_bottom = 25.09999
+offset_bottom = -0.1000061
 grow_horizontal = 2
 grow_vertical = 0
 text = "Could there be more?"
+
+[node name="RestartLabel" type="Label" parent="GUI/GameOverPanel" unique_id=727759017]
+custom_minimum_size = Vector2(278, 0)
+layout_mode = 0
+offset_left = 10.0
+offset_top = 263.0
+offset_right = 288.0
+offset_bottom = 272.0
+text = "Press 'R' to restart"
+label_settings = ExtResource("10_xt14r")
+horizontal_alignment = 1
+autowrap_mode = 1
 
 [node name="EndingLabel" type="Label" parent="GUI" unique_id=1836097305]
 visible = false
@@ -358,7 +374,11 @@ autowrap_mode = 2
 stream = SubResource("AudioStreamPlaylist_q772t")
 autoplay = true
 
-[node name="SFXAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1775247736]
+[node name="MoneyAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=894358559]
+stream = SubResource("AudioStreamRandomizer_q772t")
+volume_db = -2.645
+
+[node name="HitAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1775247736]
 stream = SubResource("AudioStreamRandomizer_n7jku")
 volume_db = -2.645
 
