@@ -22,7 +22,6 @@ func get_value(section, key) -> Variant:
 
 func set_config(nd: int = 0, nr: int = 0, nw: int = 0) -> void:
 	if config_err == OK:
-		print("Setting {0} | {1} | {2}".format([nd, nr, nw]))
 		config.set_value('stats', 'num_deaths', nd)
 		config.set_value('stats', 'num_revolutions', nr)
 		config.set_value('stats', 'num_wins', nw)

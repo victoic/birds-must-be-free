@@ -33,9 +33,7 @@ func setup(new_pos: float):
 	if rn < min(SPECIAL_BILLBOARD_CHANCE + bonus_special_chance, 0.5):
 		cur_billboard_directory = SPECIAL_BILLBOARD_DIR
 	var dir_name: String = "res://assets/sprites/billboards/" + cur_billboard_directory + GlobalsData.selected_language + '/'
-	
-	var dir := DirAccess.open(dir_name)
-	var file_names: PackedStringArray = dir.get_files()
+	var file_names: PackedStringArray = ResourceLoader.list_directory(dir_name)
 	var image_files: Array[String] = []
 	for file: String in file_names:
 		if file.ends_with('.png'):
@@ -50,7 +48,7 @@ func setup(new_pos: float):
 		elif cur_billboard_id == LOAN_BILLBOARD_ID:
 			loan_billboard = true
 	
-	print('New billboard: {0}'.format([image_files[cur_billboard_id]]))
+	print('\nNew billboard: {0}'.format([image_files[cur_billboard_id]]))
 	day_billboard.texture = load(random_file)
 	night_billboard.texture = load(random_file)
 
